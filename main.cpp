@@ -1,118 +1,67 @@
 #include <iostream>
-#include "Funciones.h"
-
 
 int main() {
-//6.1 Declarar punteros a variables
 
-    int numero = 24;
-    int *ptrnumero = &numero;
-
-    std::cout << "Valor del número: " << *ptrnumero << std::endl;
-
-    *ptrnumero = 64;
-
-    std::cout << "Segundo valor del número: " << *ptrnumero << std::endl;
-
-//6.2 Recorrer y modificar un array
-
-    int numeros[]={1,2,3,4,5};
-    int *ptrnumeros = numeros;
-
-      std::cout << "Array original: ";
-      for (int i = 0; i < 5; i++) {
-
-      std::cout << *ptrnumeros << " ";
-      ptrnumeros++;
-      }
-
-      std::cout << std::endl;
-
-      ptrnumeros = numeros;
-
-     for (int i = 0; i < 5; i++) {
-         *ptrnumeros *= 2;
-          ptrnumeros++;
-     }
-
-
-     std::cout << "Array modificado: ";
-     for (int i = 0; i < 5; i++) {
-     std::cout << *ptrnumeros << " ";
-     ptrnumeros++;
-     }
-     std::cout << std::endl;
-
-//6.3 New y delete
-    {
-        int cifra;
-
-        std::cout << "Introduce una cifra: ";
-        std::cin >> cifra;
-
-        int* cambio = new int[cifra];
-
-        for (int i = 0; i < cifra; i++){
-            cambio[i] = i * 5;
-        }
-
-        std::cout << "Resultado cambio: ";
-        for (int i = 0; i < cifra; i++) {
-            std::cout << cambio[i] << " ";
-        }
-        delete[] cambio;
+//3.1 contar hasta 10 con bucle for
+    for (int i = 1; i <= 10; i++){
+        std::cout << i <<"\n";
     }
 
-//6.4 Aritmétrica de punteros
-      int Numeros[] = {1, 2, 3, 4, 5};
-    int *ptr = Numeros;
+//3.2 tablas de multiplicar con bucle while
+    {int numero1;
 
-    std::cout << "Primer elemento: " << *ptr << std::endl;   //porqué sale junto con el resultado de arriba?
+    std::cout << "Ingresa el número: ";
+    std::cin >> numero1;
+    //std::cin sirve para poder escribir abajo en los resultados
 
-    ptr++;
-    std::cout << "Segundo elemento: " << *ptr << std::endl;
+    int contador =1;
 
-    ptr += 2;
-    std::cout << "Cuarto elemento: " << *ptr << std::endl;
+    std::cout <<"Tabla de multiplicar del "<< numero1 << " (while)" << ":\n";
 
-    ptr--;
-    std::cout << "Tercer elemento: " << *ptr << std::endl;
-//basicamente es ir avanzando en los numeros usando +1 +2... de la posición 2 a la cuatro al sumarle 2
+    while (contador <= 10) {
+        std::cout << numero1 << "*" << contador << "=" << numero1 * contador << std::endl;
+    contador++;
+    }
+    }
 
-    int offset = 1;
-    ptr = ptr - offset; // Retroceder el puntero en base al valor de 'offset'
-    std::cout << "Segundo elemento: " << *ptr << std::endl;
+//3.3 Tabla de multiplicar con bucle do-while
+    {int numero2;
 
-//6.5 Puntero a puntero
-                                                 //numero de el ejercicio 6.1
-    int **ptrAPtrnumero = &ptrnumero;
+    std::cout << "Ingresa el número: ";
+    std::cin >> numero2;
 
-    std::cout << "Valor del puntero: " << *ptrnumero << std::endl;
+    int Contador = 1;
 
-    **ptrAPtrnumero = 32;
+    std::cout << "Tabla de multiplicar del " << numero2 << " (do-while)" << ":\n";
+    do {
+        std::cout << numero2 << "*" << Contador << "=" << numero2 * Contador << std::endl;
+        Contador++;
+    }
+    while (Contador <=10);
+    }
 
-    std::cout << "Cambio de puntero: " << **ptrAPtrnumero << std::endl;
+//3.4 Instrucción de salto "break"
 
-//6.6 Punteros a funciones
-    int (*funcion)(int, int);
+    {    int numero3;
+        int suma = 0;
 
+        std::cout << "Ingresa números positivos. Para salir, ingresa un número negativo." << std::endl;
 
-    funcion = suma;
+        while (true) {
+            std::cout << "Ingresa un número: ";
+            std::cin >> numero3;
 
-    int resultado = funcion(7, 2);
-    std::cout << "Resultado de la suma: " << resultado << std::endl;
+            if (numero3 < 0) {
+                std::cout << "Has ingresado un número negativo." << std::endl;
+                break;
+                // La instrucción 'break' hace que salgamos del bucle while
+            }
 
-    funcion = resta;
+            suma += numero3;
+        }
 
-    resultado = funcion(7, 2);
-    std::cout << "Resultado de la resta: " << resultado << std::endl;
-
-    funcion = multiplicacion;
-
-    resultado = funcion(7, 2);
-    std::cout << "Resultado de la multiplicacion: " << resultado << std::endl;
+        std::cout << "La suma de los números ingresados es: " << suma << std::endl;}
 
 
     return 0;
 }
-
